@@ -97,13 +97,16 @@ Questions:
 # FAQ
 
 Q: Why is the autograder saying I have questions wrong?
+
 A: The autograder randomly selects a question to validate the answer. So the sequence which a question is regarded as wrong, may not directly align with how your function sequenced questions. (i.e. question 1 on your first submission, may be question 5 on your subsequent submission)
 
 Q: I am getting the following error in gradescope: 
-“cp: cannot stat '/autograder/submission/solution.py': No such file or directory”
+``“cp: cannot stat '/autograder/submission/solution.py': No such file or directory”``
+
 A: If you are submitting a python solution, all python submissions must have the filename titled “solution.py” (minus the quotation marks). Make sure your file meets this naming requirement.
 
 Q: I am getting a different error than above in gradescope.
+
 A: Follow these steps. 
 Confirm your code is working locally
 Working locally DOES NOT just mean that your application runs with no errors.
