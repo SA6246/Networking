@@ -80,9 +80,10 @@ if __name__ == "__main__":
 
 
 
-FAQ
+# FAQ
 Q: I am getting the following error in gradescope: 
-“cp: cannot stat '/autograder/submission/solution.py': No such file or directory”
+``“cp: cannot stat '/autograder/submission/solution.py': No such file or directory”``
+
 A: If you are submitting a python solution, all python submissions must have the filename titled “solution.py” (minus the quotation marks). Make sure your file meets this naming requirement.
 
 Recommended Textbook Reference
