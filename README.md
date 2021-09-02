@@ -92,7 +92,7 @@ Chapter 2: 2.7 Socket Programming: Creating Network Applications
 Most Common issues
 Improper encoding
 
-See or ``https://pythontic.com/modules/socket/send``
+See or https://pythontic.com/modules/socket/send 
 
 Not uploading reference helloworld.html file or building in helloworld into the code submission (either option may suffice)
 
