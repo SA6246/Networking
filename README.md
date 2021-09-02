@@ -26,8 +26,8 @@ The .py file is available to download using the link below
 https://drive.google.com/open?id=12oVjqOlgj8mQiNu4r761aGn0gqIaj8j6
  
 Skeleton Python Code for the Web Server
- #import socket module
-from socket import *
+ ```#import socket module
+ #from socket import *
 import sys # In order to terminate the program
 
 def webServer(port=13331):
@@ -76,7 +76,7 @@ def webServer(port=13331):
 
 if __name__ == "__main__":
    webServer(13331)
-
+```
 
 
 
