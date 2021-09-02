@@ -94,7 +94,8 @@ Questions:
 
 
 
-FAQ
+# FAQ
+
 Q: Why is the autograder saying I have questions wrong?
 A: The autograder randomly selects a question to validate the answer. So the sequence which a question is regarded as wrong, may not directly align with how your function sequenced questions. (i.e. question 1 on your first submission, may be question 5 on your subsequent submission)
 
