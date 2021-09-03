@@ -1,7 +1,7 @@
 Networking CS-GY-6843 Networking Fall 2021
 =============
-Professor Rafail Portnoy
----------------
+#### Professor Rafail Portnoy
+
 Course Pre-requisites  CS 2134 (CS2134 Data Structures and Algorithms) or equivalent knowledge of binary addition and multiplication system.
 ---------------
 
