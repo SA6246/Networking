@@ -8,7 +8,7 @@ def webServer(port=13331):
     #Prepare a sever socket
     serverSocket.bind(("127.0.0.1", port)) #use local loopback
     #Fill in start
-    serverSocket.listen(1) #listen to incoming TCP request
+    serverSocket.listen(10) #listen to incoming TCP request
     #Fill in end
     while True:
         #Establish the connection
@@ -27,9 +27,11 @@ def webServer(port=13331):
             #Send the content of the requested file to the client
             for i in range(0, len(outputdata)):
                 connectionSocket.send(outputdata[i].encode())
+
             connectionSocket.close()
             serverSocket.close()
             sys.exit()
+
         except IOError:
             #Send response message for file not found (404)
             #Fill in start
