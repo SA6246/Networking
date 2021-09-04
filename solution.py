@@ -35,7 +35,6 @@ def webServer(port=13331):
             #Fill in start
             connectionSocket.send("HTTP/1.1 404 NOT FOUND \r\n\r\n".encode())    
             connectionSocket.send('404 Not Found \r\n'.encode()) 
-                 
             connectionSocket.close()
             serverSocket.close()
             sys.exit()
@@ -43,5 +42,5 @@ def webServer(port=13331):
 
      # Terminate the program after sending the corresponding data
 #
-#if __name__ == "__main__":
-   # webServer(13331)
+if __name__ == "__main__":
+    webServer(13331)
