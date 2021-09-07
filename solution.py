@@ -5,15 +5,15 @@ from socket import *
 def smtp_client(port = 1025, mailserver = '127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
-    port1 = 25
-    mailserver1 = "smtp.nyu.edu"
+    #port1 = 25
+    #mailserver1 = "smtp.nyu.edu"
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     # Fill in start
     
     clientSocket = socket(AF_INET,SOCK_STREAM) #create Socket
-    clientSocket.connect((mailserver1,port1)) #pass in as a tuple (str,int)
+    clientSocket.connect((mailserver,port)) #pass in as a tuple (str,int)
     # Fill in end
     recv = clientSocket.recv(1024).decode()
     print(recv)
