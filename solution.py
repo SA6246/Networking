@@ -13,7 +13,7 @@ def smtp_client(port = 1025, mailserver = '127.0.0.1'):
     clientSocket = socket(AF_INET,SOCK_STREAM) #create Socket
     clientSocket.connect((mailserver,port)) #pass in as a tuple (str,int)
     # Fill in end
-    recv = clientSocket.recv(1024).decode()
+    #recv = clientSocket.recv(1024).decode()
     #print(recv)
     #if recv[:3] != '220':
        #print('220 reply not received from server.')
@@ -21,14 +21,14 @@ def smtp_client(port = 1025, mailserver = '127.0.0.1'):
     # Send HELO command and print server response.
     heloCommand = 'HELO Alice\r\n'
     clientSocket.send(heloCommand.encode())
-    recv1 = clientSocket.recv(1024).decode()
+    #recv1 = clientSocket.recv(1024).decode()
     #print(recv1)
     #if recv1[:3] != '250':
         #print('250 reply not received from server.')
 
     # Send MAIL FROM command and print server response.
     # Fill in start
-    MailingSender = "MAIL FROM:<Alice@127.0.0.1>\r\n"
+    MailingSender = "MAIL FROM:<BOB@127.0.0.1>\r\n"
     clientSocket.send(MailingSender.encode())
     recv2 = clientSocket.recv(1024)
     recv2 = recv2.decode()
@@ -37,7 +37,7 @@ def smtp_client(port = 1025, mailserver = '127.0.0.1'):
 
     # Send RCPT TO command and print server response.
     # Fill in start
-    MailRec = "RCPT TO:<BOB@127.0.0.1>\r\n"
+    MailRec = "RCPT TO:<Alice@127.0.0.1>\r\n"
     clientSocket(MailRec.encode())
     recv3 = clientSocket.recv(1024)
     recv3 = recv3.decode()
@@ -71,5 +71,5 @@ def smtp_client(port = 1025, mailserver = '127.0.0.1'):
     # Fill in end
     clientSocket.close() 
 
-#if __name__ == '__main__':
- #   smtp_client(1025, '127.0.0.1')
+if __name__ == '__main__':
+   smtp_client()
