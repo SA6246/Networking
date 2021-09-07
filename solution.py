@@ -2,7 +2,7 @@ from os import closerange
 from socket import *
 
 
-def smtp_client(port=1025, mailserver= '127.0.0.1'):
+def smtp_client(port=1025, mailserver = '127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
     
@@ -10,8 +10,8 @@ def smtp_client(port=1025, mailserver= '127.0.0.1'):
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     # Fill in start
     
-    clientSocket = socket(AF_INET,SOCK_STREAM)
-    clientSocket.connect((mailserver,port))
+    clientSocket = socket(AF_INET,SOCK_STREAM) #create Socket
+    clientSocket.connect((mailserver,port)) #pass in as a tuple (str,int)
     # Fill in end
     recv = clientSocket.recv(1024).decode()
     print(recv)
@@ -46,7 +46,7 @@ def smtp_client(port=1025, mailserver= '127.0.0.1'):
 
     # Send DATA command and print server response.
     # Fill in start
-    Datuh = "DATA \r\n"
+    Datuh = "DATA\r\n"
     clientSocket(Datuh.encode())
     recv4 = clientSocket.recv(1024)
     recv4 = recv4.decode()
@@ -64,12 +64,12 @@ def smtp_client(port=1025, mailserver= '127.0.0.1'):
 
     # Send QUIT command and get server response.
     # Fill in start
-    Quittin = "QUIT \r\n"
+    Quittin = "QUIT\r\n"
     clientSocket(Quittin.encode())
     recv5 = clientSocket.recv(1024)
     recv5 = recv5.decode()
     # Fill in end
     clientSocket.close()
 
-if __name__ == '__main__':
-    smtp_client(1025, '127.0.0.1')
+#if __name__ == '__main__':
+ #   smtp_client(1025, '127.0.0.1')
