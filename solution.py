@@ -3,7 +3,7 @@ from socket import *
 
 
 def smtp_client(port = 1025, mailserver = '127.0.0.1'):
-    msg = "QUIT"
+    msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
     #port1 = 25
     #mailserver1 = "smtp.nyu.edu"
@@ -63,6 +63,7 @@ def smtp_client(port = 1025, mailserver = '127.0.0.1'):
     # Message ends with a single period.
     # Fill in start
     clientSocket.send(endmsg.encode())
+    recv6 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send QUIT command and get server response.
