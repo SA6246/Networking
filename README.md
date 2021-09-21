@@ -1,6 +1,6 @@
 Computer Networking Assignment 4
 =============
-####Lab 4: ICMP Pinger Lab
+Lab 4: ICMP Pinger Lab
 ---------------
 In this lab, you will gain a better understanding of Internet Control Message Protocol (ICMP). You will learn to implement a Ping application using ICMP request and reply messages.
 
