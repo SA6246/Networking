@@ -164,7 +164,8 @@ if __name__ == '__main__':
 ## Internet Control Message Protocol (ICMP)
 ICMP Header
 The ICMP header starts after bit 160 of the IP header (unless IP options are used).
-![alt text](https://imgur.com/a/6XcsaQu)
+
+![Screenshot](Networking.png)
 
 - Type - ICMP type.
 - Code - Subtype to the given ICMP type.
