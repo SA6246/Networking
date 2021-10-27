@@ -1,116 +1,206 @@
-# Networking - Computer Networking Assignment 1
-CS-GY6843 - Fall 2021 NYU
+# Networking - Computer Networking Assignment 4
+CS-GY6843 - Fall 2021 NYU 
+## Lab 4: ICMP Pinger Lab
 
-The goal of this assignment is to bring you up to speed with basic programming skills and tools that you will be using throughout the semester to complete course assignments. At the end of this assignment, you should be able to write conditional statements in Python and be familiar with tools like GitHub, GradeScope, and PyCharm. 
+In this lab, you will gain a better understanding of Internet Control Message Protocol (ICMP). You will learn to implement a Ping application using ICMP request and reply messages.
 
-GitHub
-GitHub provides hosting for software development and version control using Git. It offers the distributed version control and source code management (SCM) functionality of Git, plus its own features. It provides access control and several collaboration features such as bug tracking, feature requests, task management, and wikis for every project.
+Ping is a computer network application used to test whether a particular host is reachable across an IP network. It is also used to self-test the network interface card of the computer or as a latency test. It works
+by sending ICMP “echo reply” packets to the target host and listening for ICMP “echo reply” replies. The "echo reply" is sometimes called a pong. Ping measures the round-trip time, records packet loss, and prints a statistical summary of the echo reply packets received (the minimum, maximum, and the mean of the round-trip times and in some versions the standard deviation of the mean).
 
-Please use your NYU account to open a new GitHub account (it is not necessary to open a new account if you already have one). Assignments will be submitted to GradeScope using GitHub. Please follow the quickstart guide to set up a new repository. Please also create and attach the SSH key to your GitHub account using the following guide (make sure to select the right operating system in the guide).
+Your task is to develop your own Ping application in Python. Your application will use ICMP but, in order to keep it simple, will not exactly follow the official specification in RFC 1739. Note that you will only need to write the client side of the program, as the functionality needed on the server side is built into almost all operating systems.
 
-GradeScope
-GradeScope automatically grades the course assignments. Most of the assignments will be sent to GradeScope for grading. 
+You should complete the Ping application so that it sends ping requests to a specified host separated by approximately one second. Each message contains a payload of data that includes a timestamp. After sending each packet, the application waits up to one second to receive a reply. If one second goes by without a reply from the server, then the client assumes that either the ping packet or the pong packet was lost in the network (or that the server is down).
 
-PyCharm
-PyCharm is a recommended Python IDE. JetBrains offers a free professional license for students. https://www.jetbrains.com/community/education/#students
-
-Please note: Course instructors may ask to review students’ GitHub repositories and use the repositories for grading for all assignments. 
+## Code
+Below you will find the skeleton code for the client. You are to complete the skeleton code. The place where you need to fill in code is marked with #Fill in start and #Fill in end. In addition, you will need to add a few lines of code in order to calculate minimum time, average time, maximum time, and stdev time and print the results like in the operating system.
 
 
+## Additional Notes
+1. In the “receiveOnePing” method, you need to receive the structure ICMP_ECHO_REPLY and fetch the information you need, such as checksum, sequence number, time to live (TTL), etc. Study the “sendOnePing” method before trying to complete the “receiveOnePing” method.
+2. You do not need to be concerned about the checksum, as it is already given in the code.
+3. This lab requires the use of raw sockets. In some operating systems, you may need administrator/root privileges to be able to run your Pinger program.
+4. See the end of this programming exercise for more information on ICMP.
+
+## Testing the Pinger
+First, test your client by sending packets to localhost, that is, 127.0.0.1.
+Then, you should see how your Pinger application communicates across the network by pinging servers
+in different continents.
+
+## What to Hand in
+Use your GitHub repository to upload the complete code for the assignment.
 
 
+**Example of a correct output**:
 
+- “No.no.e” is a non-valid domain, therefore, the return value (vars) of ping is ['0', '0.0', '0', '0.0']. Please make sure you use this exact value.
+- “Google.co.il” is a valid domain, therefore, the return value is a list that can be created in the following way:
+vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)),str(round(packet_max, 2)), str(round(stdev(stdev_var),2))]
 
-Welcome Assignment
-Steps required in order to complete the assignment:
-Create a GitHub account and follow the instructions to attach a SSH key to your account.
-Create a GradeScope account.
-Download and install PyCharm (recommended, not required).
-Import the Python skeleton code to your Python environment.
-Complete the skeleton code.
-Push the code to GitHub.
-Name the solution file “solution.py” and use GitHub to upload the code to GradeScope.
-
-Skeleton Code - https://drive.google.com/file/d/1qh763hUUn3kEdJZfT2AYlVaQMUFeQgwh/view?usp=sharing
-
-```
-### welcome_assignment_answers
-### Input - All eight questions given in the assignment.
-### Output - The right answer for the specific question.
-
-def welcome_assignment_answers(question):
-   # The student doesn't have to follow the skeleton for this assignment.
-   # Another way to implement it is using "case" statements similar to C.
-   if question == "Are encoding and encryption the same? - Yes/No":
-       answer = "The student should type the answer here"
-   elif question == "Is it possible to decrypt a message without a key? - Yes/No":
-       answer = "The student should type the answer here"
-   return (answer)
-
-
-# Complete all the questions.
-
-
-if __name__ == "__main__":
-   # use this space to debug and verify that the program works
-   debug_question = "Are encoding and encryption the same? - Yes/No"
-   print(welcome_assignment_answers(debug_question))
+The method “ping” must return a Python list with the above values for a valid and a non-valid domain. [min,avg,max,stdev]. Return values must be in milliseconds.
 
 ```
+from socket import *
+import os
+import sys
+import struct
+import time
+import select
+import binascii
+# Should use stdev
 
-As you can see, the first two questions are already in the skeleton code. Please follow the first two questions and add the rest of the questions to the code. Questions should be copied exactly the same as shown below. 
-
-Students should write the right answer in the source code/script. For example, the answer for "Are encoding and encryption the same? - Yes/No" is “No”. Therefore, the code should be:
-   if question == "Are encoding and encryption the same? - Yes/No":
-       answer = "No"
-   elif question....
-
-Returning variable:
-“Yes”, “no”, and MD5 hash should be string type.
-Numbers should be int type.
-
-Students may submit the assignment to GradeScope unlimited times until they receive full credit.
-
-Questions:
-
-    • "In Slack, what is the secret passphrase posted in the #cyberfellows-computernetworking-fall2021 channel posted by a TA?", "you have to hunt for this one in slack"
-
-    • "Are encoding and encryption the same? - Yes/No"
-
-    • "Is it possible to decrypt a message without a key? - Yes/No"
-
-    • "Is it possible to decode a message without a key? - Yes/No"
-
-    • "Is a hashed message supposed to be un-hashed? - Yes/No"
-
-    • "What is the MD5 hashing value to the following message: 'NYU Computer Networking' - Use MD5 hash generator and use the answer in your code"
-
-    • "Is MD5 a secured hashing algorithm? - Yes/No"
-
-    • "What layer from the TCP/IP model the protocol DHCP belongs to? - The answer should be a numeric number"
-
-    • "What layer of the TCP/IP model the protocol TCP belongs to? - The answer should be a numeric number"
+ICMP_ECHO_REQUEST = 8
 
 
+def checksum(string):
+    csum = 0
+    countTo = (len(string) // 2) * 2
+    count = 0
+
+    while count < countTo:
+        thisVal = (string[count + 1]) * 256 + (string[count])
+        csum += thisVal
+        csum &= 0xffffffff
+        count += 2
+
+    if countTo < len(string):
+        csum += (string[len(string) - 1])
+        csum &= 0xffffffff
+
+    csum = (csum >> 16) + (csum & 0xffff)
+    csum = csum + (csum >> 16)
+    answer = ~csum
+    answer = answer & 0xffff
+    answer = answer >> 8 | (answer << 8 & 0xff00)
+    return answer
 
 
-# FAQ
 
-Q: Why is the autograder saying I have questions wrong?
+def receiveOnePing(mySocket, ID, timeout, destAddr):
+    timeLeft = timeout
 
-A: The autograder randomly selects a question to validate the answer. So the sequence which a question is regarded as wrong, may not directly align with how your function sequenced questions. (i.e. question 1 on your first submission, may be question 5 on your subsequent submission)
+    while 1:
+        startedSelect = time.time()
+        whatReady = select.select([mySocket], [], [], timeLeft)
+        howLongInSelect = (time.time() - startedSelect)
+        if whatReady[0] == []:  # Timeout
+            return "Request timed out."
 
-Q: I am getting the following error in gradescope: 
-``“cp: cannot stat '/autograder/submission/solution.py': No such file or directory”``
+        timeReceived = time.time()
+        recPacket, addr = mySocket.recvfrom(1024)
 
-A: If you are submitting a python solution, all python submissions must have the filename titled “solution.py” (minus the quotation marks). Make sure your file meets this naming requirement.
+        # Fill in start
 
-Q: I am getting a different error than above in gradescope.
+        # Fetch the ICMP header from the IP packet
 
-A: Follow these steps. 
-Confirm your code is working locally
-Working locally DOES NOT just mean that your application runs with no errors.
-Working locally is defined as the program runs and produces the expected output set forth by the assignment. Output expectations may require you to design test cases to validate your code operates as expected.
-If your application is producing an error, google what the error means and attempt to debug your code. (If you do not understand what your code is doing, it is unlikely that others will understand)
-Search through the respective assignment Slack channel to see if anyone else has shared a question on the same problem. If the question does not exist, share the question in the assignment Slack channel so students and TAs may help where available. Collaboration is encouraged through Slack. This DOES NOT mean sharing or copying assignment submissions and code. 
+        # Fill in end
+        timeLeft = timeLeft - howLongInSelect
+        if timeLeft <= 0:
+            return "Request timed out."
+
+
+def sendOnePing(mySocket, destAddr, ID):
+    # Header is type (8), code (8), checksum (16), id (16), sequence (16)
+
+    myChecksum = 0
+    # Make a dummy header with a 0 checksum
+    # struct -- Interpret strings as packed binary data
+    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
+    data = struct.pack("d", time.time())
+    # Calculate the checksum on the data and the dummy header.
+    myChecksum = checksum(header + data)
+
+    # Get the right checksum, and put in the header
+
+    if sys.platform == 'darwin':
+        # Convert 16-bit integers from host to network  byte order
+        myChecksum = htons(myChecksum) & 0xffff
+    else:
+        myChecksum = htons(myChecksum)
+
+
+    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, myChecksum, ID, 1)
+    packet = header + data
+
+    mySocket.sendto(packet, (destAddr, 1))  # AF_INET address must be tuple, not str
+
+
+    # Both LISTS and TUPLES consist of a number of objects
+    # which can be referenced by their position number within the object.
+
+def doOnePing(destAddr, timeout):
+    icmp = getprotobyname("icmp")
+
+
+    # SOCK_RAW is a powerful socket type. For more details:   http://sockraw.org/papers/sock_raw
+    mySocket = socket(AF_INET, SOCK_RAW, icmp)
+
+    myID = os.getpid() & 0xFFFF  # Return the current process i
+    sendOnePing(mySocket, destAddr, myID)
+    delay = receiveOnePing(mySocket, myID, timeout, destAddr)
+    mySocket.close()
+    return delay
+
+
+def ping(host, timeout=1):
+    # timeout=1 means: If one second goes by without a reply from the server,  	# the client assumes that either the client's ping or the server's pong is lost
+    dest = gethostbyname(host)
+    print("Pinging " + dest + " using Python:")
+    print("")
+    # Calculate vars values and return them
+    #  vars = [str(round(packet_min, 2)), str(round(packet_avg, 2)), str(round(packet_max, 2)),str(round(stdev(stdev_var), 2))]
+    # Send ping requests to a server separated by approximately one second
+    for i in range(0,4):
+        delay = doOnePing(dest, timeout)
+        print(delay)
+        time.sleep(1)  # one second
+
+    return vars
+
+if __name__ == '__main__':
+    ping("google.co.il")
+```
+```
+```
+## Internet Control Message Protocol (ICMP)
+ICMP Header
+The ICMP header starts after bit 160 of the IP header (unless IP options are used).
+![alt text](https://imgur.com/a/6XcsaQu)
+
+- Type - ICMP type.
+- Code - Subtype to the given ICMP type.
+- Checksum - Error checking data calculated from the ICMP header + data, with value 0 for this field.
+- ID - An ID value, should be returned in the case of echo reply.
+- Sequence - A sequence value, should be returned in the case of echo reply.
+
+## Echo Request
+The echo request is an ICMP message whose data is expected to be received back in an echo reply ("pong"). The host must respond to all echo requests with an echo reply containing the exact data received in the request message.
+
+- Type must be set to 8.
+- Code must be set to 0.
+- The Identifier and Sequence Number can be used by the client to match the reply with the request that caused the reply. In practice, most Linux systems use a unique identifier for every ping process, and sequence number is an increasing number within that process. Windows uses a fixed identifier, which varies between Windows versions, and a sequence number that is only reset at boot time.
+- The data received by the echo request must be entirely included in the echo reply.
+
+## Echo Reply
+The echo reply is an ICMP message generated in response to an echo request, and is mandatory for all hosts and routers.
+- Type and code must be set to 0.
+- The identifier and sequence number can be used by the client to determine which echo requests are associated with the echo replies.
+- The data received in the echo request must be entirely included in the echo reply.
+
+## FAQ
+- **Q**: I am getting the following error in gradescope: 
+“cp: cannot stat '/autograder/submission/solution.py': No such file or directory”
+__ **A**: If you are submitting a python solution, all python submissions must have the filename titled “solution.py” (minus the quotation marks). Make sure your file meets this naming requirement.
+
+Recommended Textbook Reference
+Chapter 5: 5.6 ICMP: The Internet Control Message Protocol
+
+Most Common issues
+var values are not strings 
+var values are not calculated correctly
+Recommend to print out your var values and analyze them to see if they actually make sense. If they don’t, revisit your method for calculating.
+
+
+
+
+
 
