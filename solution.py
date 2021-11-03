@@ -18,7 +18,7 @@ TRIES = 1
 def checksum(string):
 # In this function we make the checksum of our packet
     csum = 0
-    #print("1") 
+    print("1") 
     
 
     countTo = (len(string) // 2) * 2
@@ -106,7 +106,7 @@ def get_route(hostname):
                 whatReady = select.select([mySocket], [], [], timeLeft)
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
-                    #print("here")
+                    print("here")
                     tracelist1.append(str(ttl) + " * * * Request timed out.")
                     #Fill in start
                     tracelist2.append(list(tracelist1))
@@ -118,7 +118,7 @@ def get_route(hostname):
                 timeLeft = timeLeft - howLongInSelect
 
                 if timeLeft <= 0:
-                    #print("here1")
+                    print("here1")
                     tracelist1.append(str(ttl) + " * * * Request timed out.")
                     #Fill in start
                     tracelist2.append(list(tracelist1))
@@ -175,7 +175,7 @@ def get_route(hostname):
                     #You should add your responses to your lists here 
                     #Fill in end
                 elif types == 0:
-                    #print("here3")
+                    print("here3")
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
@@ -185,12 +185,12 @@ def get_route(hostname):
                     tracelist1.append(str(ttl) + whitespace + totaltimestr + whitespace + str(addr[0])+ whitespace + dest_hostname)
                     tracelist2.append(list(tracelist1))
                     tracelist1.clear()
-                    #print(tracelist2)
+                    print(tracelist2)
                     return list(tracelist2)
                     #You should add your responses to your lists here and return your list if your destination IP is met
                     #Fill in end
                 else:
-                    #print("here3")
+                    print("here4")
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
                     tracelist2.append(list(str(ttl) + " ERROR"))
