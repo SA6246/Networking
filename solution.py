@@ -82,7 +82,7 @@ def get_route(hostname):
     timeLeft = TIMEOUT
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
-    timeLeft = 1
+    #timeLeft = 1
 
 
     for ttl in range(1,MAX_HOPS):
@@ -153,7 +153,7 @@ def get_route(hostname):
 
 
                 if types == 11:
-                    #print("here2")
+                    print("here2")
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 +
                     bytes])[0]
@@ -166,7 +166,7 @@ def get_route(hostname):
                     #You should add your responses to your lists here.
                     #Fill in end
                 elif types == 3:
-                    #print("here2")
+                    print("here2")
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
