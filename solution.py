@@ -82,6 +82,7 @@ def get_route(hostname):
     timeLeft = TIMEOUT
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
+    timeLeft = 1
 
 
     for ttl in range(1,MAX_HOPS):
@@ -116,7 +117,7 @@ def get_route(hostname):
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
-                print("stuff")
+                
                 if timeLeft <= 0:
                     print("here1")
                     tracelist1.append(str(ttl) + " * * * Request timed out.")
