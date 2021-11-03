@@ -126,6 +126,7 @@ def get_route(hostname):
                     #You should add the list above to your all traces list
                     #Fill in end
             except timeout:
+                print("herex")
                 continue
 
 
