@@ -163,6 +163,7 @@ def get_route(hostname):
                     tracelist1.append(str(ttl)+ message3)
                     tracelist2.append(list(tracelist1))
                     tracelist1.clear()
+                    return tracelist2
                     
                     #You should add your responses to your lists here.
                     #Fill in end
