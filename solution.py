@@ -142,8 +142,8 @@ def get_route(hostname):
                 #Fill in end
                 try: #try to fetch the hostname
                     #Fill in start
-                    dest_hostname = hostname
-                    #dest_hostname = gethostbyaddr(addr[0])[0]
+                    #dest_hostname = hostname
+                    dest_hostname = gethostbyaddr(addr[0])[0]
                    
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
@@ -187,7 +187,8 @@ def get_route(hostname):
                     totaltime = round((timeReceived - timeSent)*1000,2)
                     totaltimestr = str(totaltime) + "ms"
                     whitespace = ", "
-                    tracelist1.append(str(ttl) + whitespace + totaltimestr + whitespace + str(addr[0])+ whitespace + dest_hostname)
+                    #tracelist1.append(str(ttl) + whitespace + totaltimestr + whitespace + str(addr[0])+ whitespace + dest_hostname)
+                    tracelist1 = [str(ttl), totaltimestr, str(addr[0]),dest_hostname]
                     tracelist2.append(list(tracelist1))
                     tracelist1.clear()
                     print(tracelist2)
