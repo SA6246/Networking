@@ -163,10 +163,11 @@ def get_route(hostname):
                     tracelist1.append(str(ttl)+ message3)
                     tracelist2.append(list(tracelist1))
                     tracelist1.clear()
+                    
                     #You should add your responses to your lists here.
                     #Fill in end
                 elif types == 3:
-                    print("here2")
+                    print("here2again")
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
