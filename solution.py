@@ -9,7 +9,7 @@ import binascii
 
 ICMP_ECHO_REQUEST = 8
 MAX_HOPS = 30
-TIMEOUT = 25.0
+TIMEOUT = 2.0
 TRIES = 1
 # The packet that we shall send to each router along the path is the ICMP echo
 # request packet, which is exactly what we had used in the ICMP ping exercise.
@@ -206,7 +206,7 @@ def get_route(hostname):
                 mySocket.close()
 
             #print(tracelist2)
-            return tracelist2
+            #return tracelist2
             
 
 
