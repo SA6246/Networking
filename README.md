@@ -1,17 +1,17 @@
 # New York University Tandon School of Engineering
 # CS GY6803-CF01/02: Practical Cybersecurity for Systems Engineers
 # Spring 2022
-=============
+---------------
 #### Professor S. Raj Rajagopalan, Ph.D.
 
 ## Course Pre-requisites  
-=====================
+---------------
 Students will better benefit from the course if they have cybersecurity background such as have
 taken at least one course in the Cybersecurity program, for example Information Security and
 Privacy. Some familiarity with programming languages (Python) is necessary
 
 ## Course Description
-====================
+---------------
 
 This course provides an overview of the roles and responsibilities of a Cybersecurity architect in
 the creation and operation of products and systems. There will be an emphasis on the
